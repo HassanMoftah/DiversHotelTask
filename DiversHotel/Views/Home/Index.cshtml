@@ -1,0 +1,96 @@
+﻿@model DiversHotel.ViewModel.UserViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @using (Html.BeginForm("Save", "Home"))
+    {
+        <div class="row">
+
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Name)
+                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control",@type="text" })
+                    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Email)
+                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.Email,"",new {@class= "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.AdultCount)
+                    @Html.TextBoxFor(m => m.AdultCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.AdultCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="col-md-2">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.ChildrenCount)
+                    @Html.TextBoxFor(m => m.ChildrenCount, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.ChildrenCount, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.County)
+                    @Html.DropDownListFor(m => m.County, new SelectList(Model.AllCountries), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.County, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.CheckIn)
+
+                    @Html.TextBoxFor(m => m.CheckIn, new { @type = "date", @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CheckIn, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+
+                    @Html.LabelFor(m => m.CheckOut)
+                    @Html.TextBoxFor(m => m.CheckOut, new { @type = "date" , @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.CheckOut, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.RoomId)
+                    @Html.DropDownListFor(m => m.RoomId, new SelectList(Model.Rooms, "Id", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.RoomId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.MealId)
+                    @Html.DropDownListFor(m => m.MealId, new SelectList(Model.Meals, "Id", "Name"), new { @class = "form-control" })
+                    @Html.ValidationMessageFor(m => m.MealId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                @Html.AntiForgeryToken()
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    }
+</div>
